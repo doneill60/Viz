@@ -8,4 +8,7 @@ This is a group project for CS1980 Spring Semester 2018.
 *	Daniel O'Neill-	**dgo5@pitt.edu**
 *	Tegpartap Singh-**tes70@pitt.edu**
 
+##	Project Backlog:
+**https://docs.google.com/spreadsheets/d/15HkRS8Q5ZVW5r2Xa5Qwbd8gEKLbOck1WAvjsrNOSb_U/edit?usp=sharing**
+
 ##	General Description:
