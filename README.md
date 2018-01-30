@@ -11,4 +11,7 @@ This is a group project for CS1980 Spring Semester 2018.
 ##	Project Backlog:
 **https://docs.google.com/spreadsheets/d/15HkRS8Q5ZVW5r2Xa5Qwbd8gEKLbOck1WAvjsrNOSb_U/edit?usp=sharing**
 
+##	Proposal:
+**https://docs.google.com/document/d/18MlJLolOUn79dr5m4WpH58xSKBX0qTxVQUufOfamjb4/edit?usp=sharing**
+
 ##	General Description:
