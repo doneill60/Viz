@@ -47,18 +47,16 @@ public class GetCSVData {
 					FileWriter fw = new FileWriter(new File("csv_data",fileName), true);
 					PrintWriter pw = new PrintWriter(fw);
 					
-					for(int i = 0; i < weight; i++){
-						pw.println(concept);
-					}
+					pw.println(concept+","+weight);
+					
 					pw.close();
 				}
 				else{
 					FileWriter fw = new FileWriter(new File("csv_data",fileName));
 					PrintWriter pw = new PrintWriter(fw);
 					
-					for(int i = 0; i < weight; i++){
-						pw.println(concept);
-					}
+					pw.println(concept+","+weight);
+					
 					pw.close();
 				}
 				

@@ -1,0 +1,16 @@
+view,1
+system,1
+vulnerabilities,2
+log,1
+execute,1
+crash,1
+ontap,2
+date,1
+contains,2
+files,1
+unauthenticated,1
+netapp,2
+commands,1
+-,2
+attacker,1
+data,3

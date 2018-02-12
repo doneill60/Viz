@@ -1,0 +1,16 @@
+privilege,2
+pine,1
+root,1
+freebsd,2
+exploitable,1
+exists,1
+gain,1
+security,1
+-,2
+privileges,1
+user,1
+information,1
+vulnerability,2
+internet,1
+elevation,2
+date,1

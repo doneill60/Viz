@@ -4,8 +4,13 @@ mainClassName = "cs1980viz.Main"
 repositories {
 	mavenCentral()
 }
+run {
+	standardInput = System.in
+}
 dependencies {
 	testCompile 'junit:junit:4.12'
 	compile "org.apache.commons:commons-csv:1.5"
+	compile "org.apache.commons:commons-lang3:3.7"
+	compile "org.apache.commons:commons-text:1.2"
 	compile fileTree(dir: 'jar_files', include: '*.jar')
 }
