@@ -19,18 +19,15 @@ public class Main {
 		Scanner kb = new Scanner(System.in);
 		int choice = Integer.parseInt(kb.nextLine());
 		
-		System.out.println("Name of first file to compare: ");
+		System.out.println("Name of file to compare: ");
 		String tf1 = kb.nextLine();
-		System.out.println("Name of second file to compare: ");
-		String tf2 = kb.nextLine();
 		tf1 = fileLocation + "/" + tf1;
-		tf2 = fileLocation + "/" + tf2;
 			
 		if(choice == 1){
-			CalculateCosine.main(tf1, tf2);
+			CalculateCosine.main(tf1);
 		}
 		else{
-			CalculateOverlap.main();
+			CalculateOverlap.main(tf1);
 		}
 	}
 }

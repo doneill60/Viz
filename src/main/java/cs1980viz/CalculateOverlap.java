@@ -12,7 +12,7 @@ import org.apache.commons.text.similarity.*;
 public class CalculateOverlap {
 	
 		
-	public static void main (String f1, String f2) {
+	public static void main (String f1) {
 		
 	}
 }
