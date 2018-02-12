@@ -18,7 +18,7 @@ import edu.uci.ics.jung.algorithms.layout.CircleLayout;
 import edu.uci.ics.jung.graph.DirectedSparseGraph;
 import edu.uci.ics.jung.visualization.VisualizationImageServer;
 
-public class Test {
+public class Original {
 	
 	public static void main (String args[]) {
 		int recNum = 0;
@@ -38,28 +38,18 @@ public class Test {
 			int i = 1;
 			for(CSVRecord rec : csvRec){
 				//Splitting csv into individual features
-				String concept = rec.get(0);
+				String fid = rec.get(0);
 				String ftype = rec.get(1);
-				String fname = rec.get(2);
+				String tid = rec.get(2);
 				String ttype = rec.get(3);
 				int weight = Integer.parseInt(rec.get(4));
 				
-				if (i == 1){
-					FileWriter fw = new FileWriter(new File("csv_data",fname));
-					PrintWriter pw = new PrintWriter(fw);
-					pw.println(concept);
-					pw.close();
-					File test = new File("csv_data",fname);
-					boolean exists = test.exists();
-					System.out.println(exists);
-				}
-				i++;
 				//Storing them in their respective ArrayList
-				//fids.add(fid);
-				//ftypes.add(ftype);
-				//tids.add(tid);
-				//ttypes.add(ttype);
-				//weights.add(weight);
+				fids.add(fid);
+				ftypes.add(ftype);
+				tids.add(tid);
+				ttypes.add(ttype);
+				weights.add(weight);
 				
 				recNum++;
 				
