@@ -20,7 +20,7 @@ import edu.uci.ics.jung.visualization.VisualizationImageServer;
 
 public class GetCSVData {
 	
-	public static void main (String args[]) {
+	public static void main () {
 		String fileLocation = "csv_data";
 		
 		try{

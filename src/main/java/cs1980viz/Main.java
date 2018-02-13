@@ -8,12 +8,14 @@
 package cs1980viz;
 
 import java.util.Scanner;
+import org.apache.commons.text.similarity.*;
 
 public class Main {
 	
 	public static void main (String args[]) {
-		GetCSVData.main(args);
+		
 		String fileLocation = "csv_data";
+		GetCSVData.main();
 		
 		System.out.println("Enter 1 for Cosine Similarity or 2 for Overlap Similarity: ");
 		Scanner kb = new Scanner(System.in);
@@ -26,7 +28,7 @@ public class Main {
 		if(choice == 1){
 			CalculateCosine.main(tf1);
 		}
-		else{
+		else{		
 			CalculateOverlap.main(tf1);
 		}
 	}
