@@ -4,7 +4,7 @@
 
 This simply evalutes the concepts in the document as a set. The core idea being to see which concepts overlap between any 2 documents. The formula is given below:
 
-[[https://github.com/zacharymell/CS1980/img/overlap.png]]
+![](/img/overlap.png?raw=true) 
 
 The formula essentially asks are these two documents more similar than they are different?
 
@@ -13,7 +13,7 @@ The formula essentially asks are these two documents more similar than they are 
 
 The core idea of this algorithm is turning documents into vectors. If you'll recall, no matter the dimension, a vector is a straight line  with different dependent variables for each independent variable. Let us consider a simple example: Assume that document A only has 2 words, and similarly, document B only has two words. Lets assume for document A that "Wumpus" appears 3 times and "Chungus" appears 2. Turning this into a vector, we get the vector defined by the point in space (3,2). Lets assume that for document B "Wumpus" appears 1 time and "Chungus" appears 5. The resulting vector is given by the point in space (1,5). One way to determine the similarity of vectors in space is to line up the tails and measure the angle between them. That is all cosine similarity is doing. Turning documents into vectors, and calculating similarity based on the angle between those vectors. The formula is given below
 
-[[https://github.com/zacharymell/CS1980/img/cosine.png]]
+![](/img/cosine.png?raw=true) 
 
 More info can be found below:
 http://stefansavev.com/blog/cosine-similarity/
