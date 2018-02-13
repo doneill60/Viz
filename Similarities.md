@@ -4,7 +4,7 @@
 
 This simply evalutes the concepts in the document as a set. The core idea being to see which concepts overlap between any 2 documents. The formula is given below:
 
-![](/img/overlap.PNG?raw=true) 
+![](/img/ovelap.PNG?raw=true) 
 
 The formula essentially asks are these two documents more similar than they are different?
 
