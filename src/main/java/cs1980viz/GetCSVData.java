@@ -20,17 +20,19 @@ import edu.uci.ics.jung.visualization.VisualizationImageServer;
 
 public class GetCSVData {
 	
-	public static void main () {
+	public static void main (String csv) {
 		String fileLocation = "csv_data";
 		
 		try{
 			//Removing previously generated csv data
-			File rm = new File("csv_data");
+			File rm = new File(fileLocation);
 			for(File file:rm.listFiles()){
 				file.delete();
 			}
 			
-			Reader br = new BufferedReader(new InputStreamReader(new FileInputStream("src/main/resources/csv_files/c2s_links.csv"), "utf-8"));
+			String csvLoc = "src/main/resources/csv_files/";
+			csvLoc = csvLoc + csv;
+			Reader br = new BufferedReader(new InputStreamReader(new FileInputStream(csvLoc), "utf-8"));
 			CSVParser csvp = new CSVParser(br,CSVFormat.DEFAULT .withFirstRecordAsHeader());
 			
 			Iterable<CSVRecord> csvRec = csvp.getRecords();
