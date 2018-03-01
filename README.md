@@ -14,4 +14,7 @@ This is a group project for CS1980 Spring Semester 2018.
 ##	Proposal:
 **https://docs.google.com/document/d/18MlJLolOUn79dr5m4WpH58xSKBX0qTxVQUufOfamjb4/edit?usp=sharing**
 
+## Midterm Update:
+**https://docs.google.com/document/d/1QqBrhMHcIu1GnwNZbuH6mxs6_kJjyEXo8Sn3MOmiBYg/edit?usp=sharing**
+
 ##	General Description:
