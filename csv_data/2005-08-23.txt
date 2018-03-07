@@ -1,5 +1,5 @@
 overflow,1
-advantage�,1
+advantage?,1
 applications,3
 application,2
 delivery,1
@@ -43,7 +43,7 @@ san,1
 transfers,1
 manager,2
 asset,1
-etrust�,1
+etrust?,1
 caft,6
 document,1
 portal,1
@@ -55,7 +55,7 @@ adviseit,1
 jpn,1
 olap,1
 enterprise,1
-cleverpath�,4
+cleverpath?,4
 analysis,1
 ecm,1
 computer,5

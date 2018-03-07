@@ -5,7 +5,7 @@ upgrade,3
 web,2
 cleartext,1
 server,10
-�,1
+?,1
 -,2
 directories,1
 files,1
@@ -14,7 +14,7 @@ world-readable,1
 credentials,1
 includes,1
 users,2
-�bare,1
+?bare,1
 esx,9
 interface,3
 logs,2
