@@ -9,7 +9,7 @@ construct,1
 order,1
 queries,3
 buffer,3
-doesn?t,1
+doesn�t,1
 database,7
 knowledge,1
 enable,1
@@ -84,7 +84,7 @@ exploit,4
 atstake,1
 implementation,1
 quoting,2
-?,2
+�,2
 http,2
 applying,1
 know,1
