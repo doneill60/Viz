@@ -15,6 +15,7 @@ public class CalculateCosine {
 	static final Map<CharSequence, Integer> lv = new HashMap<CharSequence, Integer>();
 	static final Map<CharSequence, Integer> rv = new HashMap<CharSequence, Integer>();
 	static final String location = "csv_data";
+	//This is a min - pq. The comparator was modified to produce the opposite effect to make this a max pq
 	static PriorityQueue<FileData> queue;
 	
 	public static void main (String matchType, int data) {
@@ -35,6 +36,8 @@ public class CalculateCosine {
 				
 				BufferedReader reader = new BufferedReader(new FileReader(f1));
 				String lineToParse;
+				
+				lv.clear();
 				
 				while((lineToParse = reader.readLine()) != null){
 					String[] parsed = lineToParse.split(",");
