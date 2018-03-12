@@ -16,6 +16,7 @@ public class CalculateOverlap {
 	static final Map<Integer, String> b = new HashMap<Integer, String>();
 	static final Map<Integer, String> aIntB = new HashMap<Integer, String>();
 	static final String location = "csv_data";
+	//PQ is a min pq. comparator was flipped to make it functionally a max pq
 	static PriorityQueue<FileData> queue;
 	
 	public static void main (String matchType, int data) {
@@ -36,6 +37,7 @@ public class CalculateOverlap {
 				
 				BufferedReader reader = new BufferedReader(new FileReader(f1));
 				String lineToParse;
+				a.clear();
 				
 				int key = 0;
 				while((lineToParse = reader.readLine()) != null){
