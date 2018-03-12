@@ -18,8 +18,10 @@ public class Main {
 		String csvFile = null;
 		String similarityType = null;
 		String matchType = null;
+		String isParsed = null;
 		int simFiles = 0;
 		int percentage = 0;
+		
 				
 		try {
 			File configFile = new File("src/main/resources/config.properties");
@@ -29,6 +31,7 @@ public class Main {
 			reader.close();
 			
 			csvFile = props.getProperty("FILE_NAME");
+			isParsed = props.getProperty("CSV_PARSED");
 			similarityType = props.getProperty("SIMILARITY_TYPE");
 			matchType = props.getProperty("MATCH_TYPE");
 			simFiles = Integer.parseInt(props.getProperty("NUM_TOP_FILES"));
@@ -38,8 +41,13 @@ public class Main {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
-		GetCSVData.main(csvFile);
+		
+		if(isParsed.equals("true")){
+			//Do nothing
+		}
+		else{
+			GetCSVData.main(csvFile);
+		}
 		
 		if (similarityType.equals("cosine")){
 			if (matchType.equals("t")){
