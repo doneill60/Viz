@@ -90,7 +90,7 @@ public class CalculateCosine {
 					for(int i = 0; i < data; i++){
 						FileData tempfd = queue.remove();
 						pw.println("<a href=\""+tempfd.name+".html\">"+tempfd.name+".html</a>");
-						double sim = tempfd.similarity*100;
+						int sim = (int)(tempfd.similarity*100);
 						pw.println("&#9; "+sim+"% similar");
 						pw.println("<br/>");
 					}
@@ -112,7 +112,7 @@ public class CalculateCosine {
 						FileData tempfd = queue.remove();
 						if(tempfd.similarity*100 > data){
 							pw.println("<a href=\""+tempfd.name+".html\">"+tempfd.name+".html</a>");
-							double sim = tempfd.similarity*100;
+							int sim = (int)(tempfd.similarity*100);
 							pw.println("&#9; "+sim+"% similar");
 							pw.println("<br/>");
 						}
