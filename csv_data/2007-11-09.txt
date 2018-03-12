@@ -48,7 +48,7 @@ analysis,2
 verify,2
 system,2
 licenses,1
-investigator?s,1
+investigator�s,1
 authentication,2
 supply,1
 communicate,1

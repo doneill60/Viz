@@ -42,10 +42,21 @@ public class Main {
 		GetCSVData.main(csvFile);
 		
 		if (similarityType.equals("cosine")){
-			CalculateCosine.main(matchType, simFiles);
+			if (matchType.equals("t")){
+				CalculateCosine.main(matchType, simFiles);
+			}
+			else{
+				CalculateCosine.main(matchType, percentage);
+			}
+			
 		}
 		else if (similarityType.equals("overlap")) {
-			CalculateOverlap.main(matchType, simFiles);
+			if (matchType.equals("t")){
+				CalculateOverlap.main(matchType, simFiles);
+			}
+			else{
+				CalculateOverlap.main(matchType, percentage);
+			}
 		}
 	}
 }

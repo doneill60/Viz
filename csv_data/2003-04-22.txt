@@ -105,7 +105,7 @@ discover,2
 seeks,1
 responses,2
 captured,4
-?,1
+�,1
 channel,2
 generate,3
 bleichenbacher,6
