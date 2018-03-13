@@ -8,13 +8,13 @@ This simply evalutes the concepts in the document as a set. The core idea being 
 
 And for reference, set anatomy:
 
-![](/img/set_vis.PNG?raw=true) 
+![](/img/set vis.PNG?raw=true) 
 
 The formula essentially asks are these two documents more similar than they are different?
 
 An example:
 
-![](/img/jaccard_example.PNG?raw=true) 
+![](/img/jaccard example.PNG?raw=true) 
 
 Pros: Engineering Effort - Its very simple to implement
 Cons: Synonymy and Polysemy: Has only a binary sense of similarity. Either they are the same word or not. No regard for synonyms, taxonomy, etc. Also words might be the same but mean totally different things. Consider "Park". It can be a verb describing an action in driving or it can be used to describe a place.
