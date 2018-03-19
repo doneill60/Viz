@@ -41,7 +41,7 @@ This aims at providing a measure of importance to a word rather than simply its 
 Pros: Weights allow more important words to carry more weight
 Cons: Same as Cosine
 
-# Wu and Palmer Knowledge-Based Similarity
+## Wu and Palmer Knowledge-Based Similarity
 
 We could use the following formula to compare two documents:
 
@@ -57,6 +57,9 @@ This would use WordNet's free-to-use taxonomy system to determine each term's ca
 
 Pros: More natural way of comparing words. Synonyms will be reflected as similar.
 Cons: Expensive to calculate. Querying the dictionary to get taxonomy for every pair of terms and for every pair of documents.
+
+Speed Comparison of WordNet libraries: http://projects.csail.mit.edu/jwi/download.php?f=finlayson.2014.procgwc.7.x.pdf
+JWL License: https://creativecommons.org/licenses/by/4.0/  - Fairly Lax
 
 
 # More Resources
