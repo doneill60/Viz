@@ -46,9 +46,9 @@ public class Main {
 			//Do nothing
 		}
 		else{
-			GetCSVData.main(csvFile);
+			//GetCSVData.main(csvFile);
 		}
-		
+		/**
 		if (similarityType.equals("cosine")){
 			if (matchType.equals("t")){
 				CalculateCosine.main(matchType, simFiles);
@@ -66,6 +66,7 @@ public class Main {
 				CalculateOverlap.main(matchType, percentage);
 			}
 		}
+		*/
 	}
 }
 
