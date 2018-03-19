@@ -10,7 +10,7 @@
  */
 package ch.usi.inf.sape.hac.experiment;
 
-import java.io.BufferedReader;
+import java.io.*;
 
 /**
  * Computes the dissimilarity between two observations in an experiment.
@@ -18,29 +18,40 @@ import java.io.BufferedReader;
  * @author Matthias.Hauswirth@usi.ch
  */
 public class DissimilarityMeasure {
-	double Sims[][];
+	double sims[][];
 	
 	public DissimilarityMeasure(String csvName, int size){
-		Sims[][] = new Double[size][size];
-		FileReader fr = new FileReader(csvName);
+		sims = new double[size][size];
+		FileReader fr = null;
+		try {
+			fr = new FileReader(csvName);
+		}
+		catch (FileNotFoundException e) {
+			System.exit(0);
+		}
 		BufferedReader br  = new BufferedReader(fr);
 		String curLine;
 		int column = 0;
 		int row = 0;
-		while((curLine = br.readLine()) != null){
-			String[] splitLine = curLine.split(',');
-			
-			for(int i = 2; i < splitLine.length(); i += 2){
-				Sims[row][column] = Double.parseDouble(splitLine[i]);
-				column = column + 1;
+		try {
+			while((curLine = br.readLine()) != null){
+				String[] splitLine = curLine.split(",");
+				
+				for(int i = 2; i < splitLine.length; i += 2){
+					sims[row][column] = Double.parseDouble(splitLine[i]);
+					column = column + 1;
+				}
+				row = row + 1;
 			}
-			row = row + 1;
+		}
+		catch (IOException e) {
+			System.exit(0);
 		}
 		
 	}
 	
-    public double computeDissimilarity(int observation1, int observation2){
-		return 1 - Sims[observation1][observation2];
+    public double computeDissimilarity(Experiment experiment, int observation1, int observation2){
+		return 1 - sims[observation1][observation2];
 		
 	}
 
