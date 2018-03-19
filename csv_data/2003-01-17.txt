@@ -12,3 +12,17 @@ date,1
 gain,2
 xserver,2
 allow,1
+attacker,2
+privilege,2
+hp-ux,2
+hpsbux,1
+vulnerability,2
+contains,1
+details,1
+escalation,2
+privileges,2
+-,3
+date,1
+gain,2
+xserver,2
+allow,1
