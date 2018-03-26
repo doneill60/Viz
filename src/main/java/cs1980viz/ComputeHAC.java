@@ -37,17 +37,22 @@ public class ComputeHAC{
 				System.out.println("Observe = " + cur.getObservationCount());
 			}
 		}*/
+		
 		leafNodes(root);
 		System.out.println("Count = " + count);
 		
+		for(int i = 0; i < count; i++){
+			System.out.println(i + " = " + roots[i]);
+		}
+		
 	}
 	
-	public void leafNodes(Dendrogram n){
+	public static void leafNodes(DendrogramNode n){
 		if(n.getLeft() != null){
 			leafNodes(n.getLeft());
 		}
 		if(n.getRight() != null){
-			leftNodes(n.getRight());
+			leafNodes(n.getRight());
 		}
 		if(n.getLeft() == null && n.getRight() == null){
 			roots[total] = 1;
