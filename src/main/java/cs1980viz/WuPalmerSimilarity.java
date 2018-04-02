@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 import edu.mit.jwi.*;
 import edu.mit.jwi.Dictionary;
@@ -35,9 +37,17 @@ public class WuPalmerSimilarity {
         */
 
         // construct the URL to the Wordnet dictionary directory
-        String wnhome = System.getenv("WNHOME");
-        String path = wnhome + File.separator + "dict";
-        //String path = "C:\\Users\\user\\Desktop\\WordNet\\dict";
+        Path current = Paths.get("").toAbsolutePath();
+        Path finalPath = current;
+        for(Path cur:current){
+            String folder = cur.getFileName().toString();
+            if(folder.equals("CS1980")){
+                finalPath = cur.toAbsolutePath().getParent();
+                break;
+            }
+        }
+        String path = finalPath.toAbsolutePath().toString() + File.separator + "WordNet" + File.separator + "dict";
+
         URL url = null;
         try {
             url = new URL("file", null, path);
