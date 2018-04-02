@@ -2,10 +2,11 @@
 package cs1980viz;
 import java.io.*;
 import java.util.Comparator;
+import java.util.ArrayList;
 
 public class ComputeHAC{
 	private static int total = 0;
-	private static int[] roots;
+
 	public static void main(String[] args) throws IOException, FileNotFoundException{
 		String filename = "output/output.csv";
 		FileReader fr = new FileReader(filename);
@@ -23,41 +24,49 @@ public class ComputeHAC{
 		HierarchicalAgglomerativeClusterer hac = new HierarchicalAgglomerativeClusterer(experiment, dissimilarityMeasure, agglomerationMethod);
 		hac.cluster(dendrogramBuilder);
 		Dendrogram dendrogram = dendrogramBuilder.getDendrogram();
-		
-		roots = new int[count];
-		
-		DendrogramNode root = dendrogram.getRoot();
-		DendrogramNode cur = root;
-		/*count = 0;
-		/while(cur.getLeft() != null){
-			System.out.println("Main Observation: " + cur.getObservationCount() + " Left Observation: " + cur.getLeft().getObservationCount() + " Right Observation: " + cur.getRight().getObservationCount());
-			count += 1;
-			cur = cur.getLeft();
-			if(cur.getRight() == null){
-				System.out.println("Observe = " + cur.getObservationCount());
+			
+		DisplayClusters dc = new DisplayClusters();
+		ArrayList<DendrogramNode> clusters = dc.getClusters(dendrogram);
+		ArrayList<DendrogramNode> topClusters = new ArrayList<DendrogramNode>();
+		for (int j = 0; j < 4; j++) {
+			int max = 0;
+			int maxPos = 0;
+			for (int i = 0; i < clusters.size(); i++) {
+				if (clusters.get(i).getObservationCount() > max) {
+					max = clusters.get(i).getObservationCount();
+					maxPos = i;
+				}	
 			}
-		}*/
-		
-		leafNodes(root);
-		System.out.println("Count = " + count);
-		
-		for(int i = 0; i < count; i++){
-			System.out.println(i + " = " + roots[i]);
+			DendrogramNode node = clusters.get(maxPos);
+			topClusters.add(node);
+			clusters.remove(maxPos);
 		}
 		
+		String[] names = dc.getNames();
+		ArrayList<ArrayList<Integer>> clusterVals = new ArrayList<ArrayList<String>>();
+		for(int j = 0; j<4; j++){
+
+			clusterVals.set(j, leafNodes(topClusters.get(j)));
+		}
+		
+		for (int i = 0; i < clusterVals.get(0).size(); i++) {
+			System.out.println(names[clusterVals.get(0).get(i)]);
+		}
 	}
 	
-	public static void leafNodes(DendrogramNode n){
+	public static ArrayList<Integer> leafNodes(DendrogramNode n){
+		ArrayList<Integer> list = new ArrayList<>();
 		if(n.getLeft() != null){
-			leafNodes(n.getLeft());
+			list.addAll(leafNodes(n.getLeft()));
 		}
 		if(n.getRight() != null){
-			leafNodes(n.getRight());
+			list.addAll(leafNodes(n.getRight()));
 		}
 		if(n.getLeft() == null && n.getRight() == null){
-			roots[total] = 1;
-			total += 1;
+			list.add(n.getObservation());
 		}
+		
+		return list;
 	}
 
 }
