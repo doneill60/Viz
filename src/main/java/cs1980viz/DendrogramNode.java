@@ -24,5 +24,6 @@ public interface DendrogramNode {
 	public DendrogramNode getLeft();
 	public DendrogramNode getRight();
 	public int getObservationCount();
+	public int getObservation();
 
 }
