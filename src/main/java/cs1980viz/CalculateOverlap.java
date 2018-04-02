@@ -16,7 +16,7 @@ public class CalculateOverlap {
 	static final Map<Integer, String> a = new HashMap<Integer, String>();
 	static final Map<Integer, String> b = new HashMap<Integer, String>();
 	static final Map<Integer, String> aIntB = new HashMap<Integer, String>();
-	static final String location;
+	static String location;
 	//PQ is a min pq. comparator was flipped to make it functionally a max pq
 	static PriorityQueue<FileData> queue;
 	
