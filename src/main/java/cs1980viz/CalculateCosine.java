@@ -15,7 +15,7 @@ import java.util.Properties;
 public class CalculateCosine {
 	static final Map<CharSequence, Integer> lv = new HashMap<CharSequence, Integer>();
 	static final Map<CharSequence, Integer> rv = new HashMap<CharSequence, Integer>();
-	static final String location;
+	static String location;
 	//This is a min - pq. The comparator was modified to produce the opposite effect to make this a max pq
 	static PriorityQueue<FileData> queue;
 	

@@ -9,11 +9,11 @@ public class CalculateWuPalmer {
     static final Map<String, Integer> lv = new HashMap<String, Integer>();
     static final Map<String, Integer> rv = new HashMap<String, Integer>();
     static final Map<String, Integer> df = new HashMap<String, Integer>();
-    static final String location = "csv_data";
+    static String location;
     static PriorityQueue<FileData> pq;
     static WuPalmerSimilarity wup = null;
     //Load csv directory for repeated use later
-    static File csvDirectory = new File("csv_data");
+    static File csvDirectory;
     static int docCount;
 
     public static void main (String matchType, int data){
@@ -38,6 +38,8 @@ public class CalculateWuPalmer {
             simFiles = Integer.parseInt(props.getProperty("NUM_TOP_FILES"));
             percentage = Integer.parseInt(props.getProperty("PERCENT_MATCH"));
             similarityType = props.getProperty("SIMILARITY_TYPE");
+            location = props.getProperty("OUTPUT_CSV_LOC");
+            csvDirectory = new File(location);
         }
         catch(Exception e){
             System.out.println(e);
