@@ -16,7 +16,7 @@ public class CalculateOverlap {
 	static final Map<Integer, String> a = new HashMap<Integer, String>();
 	static final Map<Integer, String> b = new HashMap<Integer, String>();
 	static final Map<Integer, String> aIntB = new HashMap<Integer, String>();
-	static final String location = "csv_data";
+	static final String location;
 	//PQ is a min pq. comparator was flipped to make it functionally a max pq
 	static PriorityQueue<FileData> queue;
 	
@@ -40,6 +40,7 @@ public class CalculateOverlap {
 			simFiles = Integer.parseInt(props.getProperty("NUM_TOP_FILES"));
 			percentage = Integer.parseInt(props.getProperty("PERCENT_MATCH"));
 			similarityType = props.getProperty("SIMILARITY_TYPE");
+			location = props.getProperty("OUTPUT_CSV_LOC");
 		}
 		catch(Exception e){
 			System.out.println(e);
@@ -88,7 +89,7 @@ public class CalculateOverlap {
 				File folder = new File(location);
 				File[] list = folder.listFiles();
 				
-				queue = new PriorityQueue<FileData>((list.length-1), comparator);
+				//queue = new PriorityQueue<FileData>((list.length-1), comparator);
 				pwoutput.print(f1+",");
 				
 				//Comparing file with all other files
@@ -121,7 +122,7 @@ public class CalculateOverlap {
 					//Calculating overlap similarity
 					double sim = ((double)(aIntB.size())/(double)(a.size() + b.size() - aIntB.size()));
 					pwoutput.print(sim+",");
-					queue.add(new FileData(list[i].getName(), sim));
+					//queue.add(new FileData(list[i].getName(), sim));
 					
 				}
 				pwoutput.print("\n");

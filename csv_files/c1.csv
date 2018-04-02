@@ -1,0 +1,11 @@
+from.id,from.type,to.id,to.type,weight
+transmits,concept,2010-04-06.txt,source,1
+initialization,concept,2004-02-25.txt,source,1
+kernel,concept,2002-04-15.txt,source,5
+belimited,concept,2006-02-07.txt,source,1
+solution,concept,2010-06-17.txt,source,1
+run,concept,2004-06-02.txt,source,1
+note,concept,2003-10-29.txt,source,1
+program,concept,2008-09-18.txt,source,1
+attackers,concept,2001-06-27.txt,source,1
+web,concept,2003-03-25.txt,source,4

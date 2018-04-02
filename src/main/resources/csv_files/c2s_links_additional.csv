@@ -1,6 +1,0 @@
-from.id,from.type,to.id,to.type,weight
-transmits,concept,2010-04-06.txt,source,1
-initialize,concept,2004-03-25.txt,source,2
-kernel,concept,2003-04-15.txt,source,5
-bells,concept,2006-05-07.txt,source,1
-souls,concept,2010-06-18.txt,source,1
