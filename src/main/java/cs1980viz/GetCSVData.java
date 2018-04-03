@@ -53,7 +53,7 @@ public class GetCSVData {
 					file.delete();
 				}
 				
-				csvLoc = csvLoc + csv;
+				csvLoc = csvLoc + "/" + csv;
 				Reader br = new BufferedReader(new InputStreamReader(new FileInputStream(csvLoc), "utf-8"));
 				CSVParser csvp = new CSVParser(br,CSVFormat.DEFAULT .withFirstRecordAsHeader());
 				
