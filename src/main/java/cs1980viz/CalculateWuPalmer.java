@@ -16,7 +16,7 @@ public class CalculateWuPalmer {
     static File csvDirectory;
     static int docCount;
 
-    public static void main (String matchType, int data){
+    public static void main (String args[]){
         //Calculate document frequency for use by the Wu and Palmer Algorithm
         calculateDF();
         wup = new WuPalmerSimilarity(df, docCount);
