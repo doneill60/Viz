@@ -38,7 +38,7 @@ public class CalculateCosine {
 			simFiles = Integer.parseInt(props.getProperty("NUM_TOP_FILES"));
 			percentage = Integer.parseInt(props.getProperty("PERCENT_MATCH"));
 			similarityType = props.getProperty("SIMILARITY_TYPE");
-			location = props.getProperty("OUTPUT_CSV_LOCATION");
+			location = props.getProperty("OUTPUT_CSV_LOC");
 		}
 		catch(Exception e){
 			System.out.println(e);
