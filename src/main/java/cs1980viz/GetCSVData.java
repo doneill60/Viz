@@ -25,6 +25,8 @@ public class GetCSVData {
 		String fileLocation = "csv_data";
 		String csv = "null";
 		String isParsed = "false";
+		String csvLoc = "null";
+		String outputLoc = "null";
 		
 		try{
 			File configFile = new File("src/main/resources/config.properties");
@@ -35,6 +37,8 @@ public class GetCSVData {
 			
 			csv = props.getProperty("FILE_NAME");
 			isParsed = props.getProperty("CSV_PARSED");
+			csvLoc = props.getProperty("INPUT_CSV_LOC");
+			outputLoc = props.getProperty("OUTPUT_CSV_LOC");
 			
 		}
 		catch(Exception e){
@@ -49,8 +53,7 @@ public class GetCSVData {
 					file.delete();
 				}
 				
-				String csvLoc = "src/main/resources/csv_files/";
-				csvLoc = csvLoc + csv;
+				csvLoc = csvLoc + "/" + csv;
 				Reader br = new BufferedReader(new InputStreamReader(new FileInputStream(csvLoc), "utf-8"));
 				CSVParser csvp = new CSVParser(br,CSVFormat.DEFAULT .withFirstRecordAsHeader());
 				
@@ -65,7 +68,7 @@ public class GetCSVData {
 					boolean fileExists = testFile.exists();
 					
 					if(fileExists == true){
-						FileWriter fw = new FileWriter(new File("csv_data",fileName), true);
+						FileWriter fw = new FileWriter(new File(outputLoc,fileName), true);
 						PrintWriter pw = new PrintWriter(fw);
 						
 						pw.println(concept+","+weight);
@@ -73,7 +76,7 @@ public class GetCSVData {
 						pw.close();
 					}
 					else{
-						FileWriter fw = new FileWriter(new File("csv_data",fileName));
+						FileWriter fw = new FileWriter(new File(outputLoc,fileName));
 						PrintWriter pw = new PrintWriter(fw);
 						
 						pw.println(concept+","+weight);
@@ -85,7 +88,6 @@ public class GetCSVData {
 			}
 			//Adding more csv data
 			else{
-				String csvLoc = "src/main/resources/csv_files/";
 				csvLoc = csvLoc + csv;
 				Reader br = new BufferedReader(new InputStreamReader(new FileInputStream(csvLoc), "utf-8"));
 				CSVParser csvp = new CSVParser(br,CSVFormat.DEFAULT .withFirstRecordAsHeader());
@@ -101,7 +103,7 @@ public class GetCSVData {
 					boolean fileExists = testFile.exists();
 					
 					if(fileExists == true){
-						FileWriter fw = new FileWriter(new File("csv_data",fileName), true);
+						FileWriter fw = new FileWriter(new File(outputLoc,fileName), true);
 						PrintWriter pw = new PrintWriter(fw);
 						
 						pw.println(concept+","+weight);
@@ -109,7 +111,7 @@ public class GetCSVData {
 						pw.close();
 					}
 					else{
-						FileWriter fw = new FileWriter(new File("csv_data",fileName));
+						FileWriter fw = new FileWriter(new File(outputLoc,fileName));
 						PrintWriter pw = new PrintWriter(fw);
 						
 						pw.println(concept+","+weight);
