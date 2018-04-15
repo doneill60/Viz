@@ -48,15 +48,15 @@ public class DisplayClusters {
 			String line = br.readLine();
 			String[] split = line.split(",");
 			int count = (split.length-1)/2;
-			
 			String[] names = new String[count];
 			int num = 0;
-			while (num < count) {
+			//while (num < count) {
 				for (int i = 1; i < split.length; i+=2) {
 					names[num] = split[i];
+					num++;
 				}
-				num++;
-			}
+				//num++;
+			//}
 			
 			return names;
 		}

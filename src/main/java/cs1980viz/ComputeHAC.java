@@ -3,10 +3,11 @@ package cs1980viz;
 import java.io.*;
 import java.util.Comparator;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ComputeHAC{
 	private static int total = 0;
-
+	static ArrayList<Integer> list;
 	public static void main(String[] args) throws IOException, FileNotFoundException{
 		String filename = "output/output.csv";
 		FileReader fr = new FileReader(filename);
@@ -28,7 +29,7 @@ public class ComputeHAC{
 		DisplayClusters dc = new DisplayClusters();
 		ArrayList<DendrogramNode> clusters = dc.getClusters(dendrogram);
 		ArrayList<DendrogramNode> topClusters = new ArrayList<DendrogramNode>();
-		for (int j = 0; j < 4; j++) {
+		for (int j = 0; j < 10; j++) {
 			int max = 0;
 			int maxPos = 0;
 			for (int i = 0; i < clusters.size(); i++) {
@@ -43,30 +44,65 @@ public class ComputeHAC{
 		}
 		
 		String[] names = dc.getNames();
-		ArrayList<ArrayList<Integer>> clusterVals = new ArrayList<ArrayList<String>>();
-		for(int j = 0; j<4; j++){
-
-			clusterVals.set(j, leafNodes(topClusters.get(j)));
+		List<List<Integer>> clusterVals = new ArrayList<List<Integer>>();
+		for(int j = 0; j<10; j++){
+			list = new ArrayList<>();
+			leafNodes(topClusters.get(j));
+			clusterVals.add(list);
 		}
 		
-		for (int i = 0; i < clusterVals.get(0).size(); i++) {
-			System.out.println(names[clusterVals.get(0).get(i)]);
-		}
+		generateHTML(clusterVals, names);
+
 	}
-	
-	public static ArrayList<Integer> leafNodes(DendrogramNode n){
-		ArrayList<Integer> list = new ArrayList<>();
-		if(n.getLeft() != null){
-			list.addAll(leafNodes(n.getLeft()));
+	public static void generateHTML(List<List<Integer>> clusterVals, String[] names) throws IOException{
+		
+		for (int i = 0; i < clusterVals.size(); i++) {
+			FileWriter fw = new FileWriter(new File("cluster","Cluster" + (i+1) +".html"));
+			PrintWriter pw = new PrintWriter(fw);
+			
+			pw.println("<!DOCTYPE html>");
+			pw.println("<html>");
+			pw.println("<body>");
+			pw.println("<h1>Cluster"+(i + 1)+"</h1>");
+			pw.println("<h2>Number of elements in cluster: " + clusterVals.get(i).size() + "<br/></h2>");
+			for(int j = 0; j < clusterVals.get(i).size(); j++){
+				String name = names[clusterVals.get(i).get(j)];
+				String[] output = name.split("/");
+				pw.println(output[1]);
+				pw.println("<br/>");
+			}
+			pw.println("</body>");
+			pw.println("</html>");
+			pw.close();
 		}
-		if(n.getRight() != null){
-			list.addAll(leafNodes(n.getRight()));
+		
+		FileWriter fw = new FileWriter(new File("cluster","Clusters.html"));
+		PrintWriter pw = new PrintWriter(fw);
+		pw.println("<!DOCTYPE html>");
+		pw.println("<html>");
+		pw.println("<body>");
+		pw.println("<h1>Clusters</h1>");
+		for(int i = 0; i < clusterVals.size(); i++){
+			pw.println("<a href=\"Cluster"+(i + 1)+".html\">Cluster"+(i+1)+".html</a>");
+			pw.println("<br/>");
+		}
+		pw.println("</body>");
+		pw.println("</html>");
+		pw.close();
+		
+		
+
+	}
+	public static void leafNodes(DendrogramNode n){
+		if(n == null){
+			return;
 		}
 		if(n.getLeft() == null && n.getRight() == null){
 			list.add(n.getObservation());
 		}
 		
-		return list;
+		leafNodes(n.getLeft());
+		leafNodes(n.getRight());
 	}
 
 }
