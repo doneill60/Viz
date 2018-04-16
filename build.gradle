@@ -1,6 +1,6 @@
 apply plugin: 'java'
 apply plugin: 'application'
-mainClassName = "cs1980viz.CalcHtmlDemo"
+mainClassName = "cs1980viz.ComputeHAC"
 repositories {
 	mavenCentral()
 }

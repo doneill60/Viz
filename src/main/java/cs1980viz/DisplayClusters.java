@@ -16,7 +16,7 @@ public class DisplayClusters {
 			Queue<DendrogramNode> queue = new LinkedList<DendrogramNode>();
 			queue.clear();
 			queue.add(dendosaur.getRoot());
-			while (!queue.isEmpty() && clusters.size() < 300) {
+			while (!queue.isEmpty()) {
 				DendrogramNode node = queue.remove();
 				if (node.getLeft() == null && node.getRight() == null) clusters.add(node);
 				if (node.getLeft() != null) {
