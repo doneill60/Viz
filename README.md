@@ -17,5 +17,9 @@ This is a group project for CS1980 Spring Semester 2018.
 ## Midterm Update:
 **https://docs.google.com/document/d/1QqBrhMHcIu1GnwNZbuH6mxs6_kJjyEXo8Sn3MOmiBYg/edit?usp=sharing**
 
-##	General Description:
+## Final Paper:
+**https://docs.google.com/document/d/1TYhXtAgqoQfbHJyb0kzH5kQEd3tsSK82wxtPdNsndWA/edit?usp=sharing**
+
+##	Final Presentation:
+**https://docs.google.com/presentation/d/1cyhBMS0Rkd6XWbsGd0Msk8RaUfosU8t2_y7CDacKQo8/edit?usp=sharing**
 
