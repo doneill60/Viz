@@ -1,6 +1,8 @@
-FILE_NAME= "The name of the csv file that is to be added ex)csv_file.csv"
-CSV_PARSED= "true if csv is to be added to existing data, false if scrapping data already generated"
-SIMILARITY_TYPE="Similarity type, either overlap or cosine"
-MATCH_TYPE= "'t' for Top files that match or 'p' for top percent that match"
-NUM_TOP_FILES= "How many top files you want to be displayed ex) 20"
-PERCENT_MATCH= "Minimum similarity percent match of files to be displayed ex) 50"
+FILE_NAME= The name of the csv file that is to be added ex)csv_file.csv
+CSV_PARSED= 'true' if csv is to be added to existing data, 'false' if scrapping data already generated
+INPUT_CSV_LOC= The location of where your csv files are located using the root directory of the project as the base
+OUTPUT_CSV_LOC= The location of where you want your parsed csv data stored using the root directory of the project as the base
+SIMILARITY_TYPE=Similarity type, either 'overlap', 'cosine', or 'wupalmer'
+MATCH_TYPE= 't' for Top files that match or 'p' for top percent that match
+NUM_TOP_FILES= How many top files you want to be displayed ex) 20
+PERCENT_MATCH= Minimum similarity percent match of files to be displayed ex) 50
