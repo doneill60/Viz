@@ -47,5 +47,9 @@ public final class MergeNode implements DendrogramNode {
 	public final double getDissimilarity() {
 		return dissimilarity;
 	}
+	
+	public int getObservation() {
+		return -1;
+	}
 
 }

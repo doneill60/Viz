@@ -2,20 +2,46 @@
 package cs1980viz;
 import java.io.*;
 import java.util.Comparator;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
 
 public class ComputeHAC{
 	private static int total = 0;
-	private static int[] roots;
+	static ArrayList<Integer> list;
+	static String location;
 	public static void main(String[] args) throws IOException, FileNotFoundException{
-		String filename = "output/output.csv";
+		String csv = "";
+		int clusterNum = 0;
+		int total = 0;
+	
+		//Reading in from a configuration file
+		try{
+			File configFile = new File("src/main/resources/cluster.properties");
+			FileReader reader = new FileReader(configFile);
+			Properties props = new Properties();
+			props.load(reader);
+			reader.close();
+			
+			csv = props.getProperty("CSV_LOCATION");
+			clusterNum = Integer.parseInt(props.getProperty("NUM_CLUSTERS"));
+			total = Integer.parseInt(props.getProperty("NUM_IN_CLUSTERS"));
+			location = props.getProperty("OUTPUT_HTML_LOC");
+		}
+		catch(Exception e){
+			System.out.println(e);
+			System.exit(1);
+		}
+		//Reading how many files are in total
+		String filename = csv;
 		FileReader fr = new FileReader(filename);
 		BufferedReader br  = new BufferedReader(fr);
 		String curLine;
 		int count = 0;
 		while((curLine = br.readLine()) != null){
 			count = count + 1;
-			
 		}
+		//Setting up the variables for HAC
 		Experiment experiment = new Experiment(count);
 		DissimilarityMeasure dissimilarityMeasure = new DissimilarityMeasure(filename, count);
 		AgglomerationMethod agglomerationMethod = new AverageLinkage();
@@ -23,41 +49,97 @@ public class ComputeHAC{
 		HierarchicalAgglomerativeClusterer hac = new HierarchicalAgglomerativeClusterer(experiment, dissimilarityMeasure, agglomerationMethod);
 		hac.cluster(dendrogramBuilder);
 		Dendrogram dendrogram = dendrogramBuilder.getDendrogram();
+			
+		DisplayClusters dc = new DisplayClusters();
 		
-		roots = new int[count];
+		//ArrayList<DendrogramNode> clusters = dc.getClusters(dendrogram);
+		//ArrayList<DendrogramNode> topClusters = new ArrayList<DendrogramNode>();
+		//	for (int j = 0; j < 2; j++) {
+		//		int max = 0;
+		//	int maxPos = 0;
+		//	for (int i = 0; i < clusters.size(); i++) {
+		//		if (clusters.get(i).getObservationCount() > max) {
+		//			max = clusters.get(i).getObservationCount();
+		//			maxPos = i;
+		//		}	
+		//	}
+		//	DendrogramNode node = clusters.get(maxPos);
+			//topClusters.add(node);
+		//	clusters.remove(maxPos);
+		//}
+		//Getting all leaf nodes in an arraylist
+		String[] names = dc.getNames();
+		List<List<Integer>> clusterVals = new ArrayList<List<Integer>>();
+		list = new ArrayList<>();
+		leafNodes(dendrogram.getRoot());
 		
-		DendrogramNode root = dendrogram.getRoot();
-		DendrogramNode cur = root;
-		/*count = 0;
-		/while(cur.getLeft() != null){
-			System.out.println("Main Observation: " + cur.getObservationCount() + " Left Observation: " + cur.getLeft().getObservationCount() + " Right Observation: " + cur.getRight().getObservationCount());
-			count += 1;
-			cur = cur.getLeft();
-			if(cur.getRight() == null){
-				System.out.println("Observe = " + cur.getObservationCount());
-			}
-		}*/
-		
-		leafNodes(root);
-		System.out.println("Count = " + count);
-		
-		for(int i = 0; i < count; i++){
-			System.out.println(i + " = " + roots[i]);
+		//Splitting the values up into the clusters
+		int clusterSize = count / clusterNum;
+		int count2 = 0;
+		for(int i = 0; i < clusterNum; i++){
+			clusterVals.add(list.subList(count2, count2 + clusterSize));
+			count2 = count2 + clusterSize;
 		}
-		
+		generateHTML(clusterVals, names);
+
 	}
 	
-	public static void leafNodes(DendrogramNode n){
-		if(n.getLeft() != null){
-			leafNodes(n.getLeft());
+	//HTML files showing all the clusters and their contents
+	public static void generateHTML(List<List<Integer>> clusterVals, String[] names) throws IOException{
+		//Removing previously generated data
+		File rm = new File(location);
+		for(File file:rm.listFiles()){
+			file.delete();
 		}
-		if(n.getRight() != null){
-			leafNodes(n.getRight());
+		
+		for (int i = 0; i < clusterVals.size(); i++) {
+			FileWriter fw = new FileWriter(new File(location,"Cluster" + (i+1) +".html"));
+			PrintWriter pw = new PrintWriter(fw);
+			
+			pw.println("<!DOCTYPE html>");
+			pw.println("<html>");
+			pw.println("<body>");
+			pw.println("<h1>Cluster"+(i + 1)+"</h1>");
+			pw.println("<h2>Number of elements in cluster: " + clusterVals.get(i).size() + "<br/></h2>");
+			for(int j = 0; j < clusterVals.get(i).size(); j++){
+				String name = names[clusterVals.get(i).get(j)];
+				String[] output = name.split("/");
+				pw.println(output[1]);
+				pw.println("<br/>");
+			}
+			pw.println("</body>");
+			pw.println("</html>");
+			pw.close();
+		}
+		
+		FileWriter fw = new FileWriter(new File(location,"Clusters.html"));
+		PrintWriter pw = new PrintWriter(fw);
+		pw.println("<!DOCTYPE html>");
+		pw.println("<html>");
+		pw.println("<body>");
+		pw.println("<h1>Clusters</h1>");
+		for(int i = 0; i < clusterVals.size(); i++){
+			pw.println("<a href=\"Cluster"+(i + 1)+".html\">Cluster"+(i+1)+".html</a>");
+			pw.println("<br/>");
+		}
+		pw.println("</body>");
+		pw.println("</html>");
+		pw.close();
+		
+		
+
+	}
+	//Recursion to find bottom of tree
+	public static void leafNodes(DendrogramNode n){
+		if(n == null){
+			return;
 		}
 		if(n.getLeft() == null && n.getRight() == null){
-			roots[total] = 1;
-			total += 1;
+			list.add(n.getObservation());
 		}
+		
+		leafNodes(n.getLeft());
+		leafNodes(n.getRight());
 	}
 
 }
