@@ -41,8 +41,8 @@ public final class Dendrogram {
             System.out.println(indent+"Observation: "+node);
         } else if (node instanceof MergeNode) {
             System.out.println(indent+"Merge:");
-            dumpNode(indent+"  ", ((MergeNode)node).getLeft());
-            dumpNode(indent+"  ", ((MergeNode)node).getRight());
+            dumpNode(indent+"  ", node.getLeft());
+            dumpNode(indent+"  ", node.getRight());
         }
     }
 }

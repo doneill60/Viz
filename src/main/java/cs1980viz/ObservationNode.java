@@ -10,6 +10,8 @@
  */
 package cs1980viz;
 
+import java.util.ArrayList;
+
 /**
  * An ObservationNode represents a leaf node in a Dendrogram.
  * It corresponds to a singleton cluster of one observation.
@@ -19,24 +21,30 @@ package cs1980viz;
 public final class ObservationNode implements DendrogramNode {
 
 	private final int observation;
+	private final ArrayList<Integer> docs;
 
-	
 	public ObservationNode(final int observation) {
 		this.observation = observation;
+		docs = new ArrayList<Integer>();
+		docs.add(observation);
 	}
-	
+
+	public final ArrayList<Integer> getDocs(){
+		return docs;
+	}
+
 	public final DendrogramNode getLeft() {
 		return null;
 	}
-	
+
 	public final DendrogramNode getRight() {
 		return null;
 	}
-	
+
 	public int getObservationCount() {
 		return 1;
 	}
-	
+
 	public final int getObservation() {
 		return observation;
 	}

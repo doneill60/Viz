@@ -8,9 +8,7 @@
 package cs1980viz;
 
 import java.io.*;
-import java.util.Comparator;
-import java.util.PriorityQueue;
-import java.util.Properties;
+import java.util.*;
 
 public class CalcHtmlDemo {
 	
@@ -59,7 +57,21 @@ public class CalcHtmlDemo {
 			for(File file:rm.listFiles()){
 				file.delete();
 			}
-		
+
+			File array = new File("output\\array");
+			FileInputStream fis = new FileInputStream(array);
+			ObjectInputStream iis = new ObjectInputStream(fis);
+			long highestCommonNode[][] = (long[][]) iis.readObject();
+
+			File csvData = new File("csv_data");
+			Map<String, Integer> csvFileNames = new HashMap<>();
+
+			int k = 1;
+			for(File file:csvData.listFiles()){
+				csvFileNames.put(file.getName(), k);
+				k++;
+			}
+
 			while((line = reader.readLine()) != null){
 				String[] lineData = line.split(",");
 				PriorityQueue<FileData> queue = new PriorityQueue<FileData>((lineData.length/2), comparator);
@@ -73,6 +85,8 @@ public class CalcHtmlDemo {
 					
 					FileWriter fw = new FileWriter(new File("html",lineData[0].split("/")[1]+".html"));
 					PrintWriter pw = new PrintWriter(fw);
+
+					int originalIndex = csvFileNames.get(lineData[0].split("/")[1]);
 						
 					pw.println("<!DOCTYPE html>");
 					pw.println("<html>");
@@ -82,13 +96,23 @@ public class CalcHtmlDemo {
 					
 					for(int i = 0; i < data+1; i++){
 						FileData tempfd = queue.remove();
-						if(tempfd.name.equals(lineData[0].split("/")[1])){
-							
-						}
-						else{
+						int otherIndex = csvFileNames.get(tempfd.name);
+						if(!tempfd.name.equals(lineData[0].split("/")[1])){
 							pw.println("<a href=\""+tempfd.name+".html\">"+tempfd.name+"</a>");
 							int sim = (int)(tempfd.similarity*100);
 							pw.println("&#9; "+sim+"% similar");
+							int max =  0;
+							int min = 0;
+							if(originalIndex > otherIndex){
+								max = originalIndex;
+								min = otherIndex;
+							} else{
+								min = originalIndex;
+								max = otherIndex;
+							}
+							Long clusterId = highestCommonNode[min][max];
+							pw.println("&emsp;&emsp;Both in Cluster: ");
+							pw.println("<a href=\" ./clusters/cluster"+ clusterId.toString() +".html\" >"+clusterId.toString()+"</a>");
 							pw.println("<br/>");
 						}
 					}
@@ -100,7 +124,9 @@ public class CalcHtmlDemo {
 				else{
 					FileWriter fw = new FileWriter(new File("html",lineData[0].split("/")[1]+".html"));
 					PrintWriter pw = new PrintWriter(fw);
-						
+
+					int originalIndex = csvFileNames.get(lineData[0].split("/")[1]);
+
 					pw.println("<!DOCTYPE html>");
 					pw.println("<html>");
 					pw.println("<body>");
@@ -109,14 +135,24 @@ public class CalcHtmlDemo {
 					
 					for(int i = 0; i < queue.size(); i++){
 						FileData tempfd = queue.remove();
-						if(tempfd.name.equals(lineData[0].split("/")[1])){
-							
-						}
-						else{
+						int otherIndex = csvFileNames.get(tempfd.name);
+						if(!tempfd.name.equals(lineData[0].split("/")[1])){
 							if(tempfd.similarity*100 > data){
 								pw.println("<a href=\""+tempfd.name+".html\">"+tempfd.name+"</a>");
 								int sim = (int)(tempfd.similarity*100);
 								pw.println("&#9; "+sim+"% similar");
+								int max =  0;
+								int min = 0;
+								if(originalIndex > otherIndex){
+									max = originalIndex;
+									min = otherIndex;
+								} else{
+									min = originalIndex;
+									max = otherIndex;
+								}
+								Long clusterId = highestCommonNode[min][max];
+								pw.println("&emsp;&emsp;Both in Cluster: ");
+								pw.println("<a href=\" ./clusters/cluster"+ clusterId.toString() +".html\" >"+clusterId.toString()+"</a>");
 								pw.println("<br/>");
 							}
 							else{

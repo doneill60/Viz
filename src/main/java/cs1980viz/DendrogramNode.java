@@ -11,6 +11,8 @@
 package cs1980viz;
 
 
+import java.util.ArrayList;
+
 /**
  * A DendrogramNode is a node in a Dendrogram.
  * It represents a subtree of the dendrogram tree.
@@ -21,9 +23,9 @@ package cs1980viz;
  */
 public interface DendrogramNode {
 	
-	public DendrogramNode getLeft();
-	public DendrogramNode getRight();
-	public int getObservationCount();
-	public int getObservation();
+	DendrogramNode getLeft();
+	DendrogramNode getRight();
+	int getObservationCount();
+	ArrayList<Integer> getDocs();
 
 }
