@@ -15,7 +15,7 @@ public class ClusterMappings{
         this.mappings = new HashMap<>();
         this.dendrogram = dendrogram;
         this.nObservations = experiment.getNumberOfObservations();
-        this.highestCommonNode = new long[nObservations][nObservations];
+        this.highestCommonNode = new long[nObservations+1][nObservations+1];
     }
 
     public void createMap(){
